@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    group_by_match_type (0.1.0)
+    group_by_match_type (0.2.0)
       csv (~> 3.0)
 
 GEM

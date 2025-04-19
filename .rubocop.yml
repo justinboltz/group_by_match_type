@@ -1,0 +1,11 @@
+AllCops:
+  TargetRubyVersion: 3.1
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true

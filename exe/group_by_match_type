@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'group_by_match_type'
+require 'group_by_match_type/cli'
+
+GroupByMatchType::CLI.start(ARGV)

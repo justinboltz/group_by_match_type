@@ -30,11 +30,11 @@ module GroupByMatchType
       # Determine output file path
       output_file ||= @input_file.sub(/\.csv$/, '_grouped.csv')
       CSV.open(output_file, 'w') do |csv|
-        csv << rows.headers + ['group_id']
+        csv << ['group_id'] + rows.headers
         rows.each_with_index do |row, index|
           root = @union_find.find(index.to_s)
           group_id = group_id_map[root]
-          csv << row.fields + [group_id]
+          csv << [group_id] + row.fields
         end
       end
 

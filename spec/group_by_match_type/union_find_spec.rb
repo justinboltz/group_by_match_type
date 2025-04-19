@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'group_by_match_type/union_find'
 
@@ -20,7 +22,7 @@ RSpec.describe GroupByMatchType::UnionFind do
     it 'merges two items into the same group' do
       union_group.find_or_create(['a'])
       union_group.find_or_create(['b'])
-      union_group.find_or_create(['a', 'b'])
+      union_group.find_or_create(%w[a b])
 
       group_a = union_group.find_or_create(['a'])
       group_b = union_group.find_or_create(['b'])

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'optparse'
 require_relative 'matcher'
 
 module GroupByMatchType
   class CLI
-    VALID_TYPES = %w[same_email same_phone same_email_or_phone]
+    VALID_TYPES = %w[same_email same_phone same_email_or_phone].freeze
 
     def self.start(args)
       if args.empty? || args.include?('-h') || args.include?('--help')

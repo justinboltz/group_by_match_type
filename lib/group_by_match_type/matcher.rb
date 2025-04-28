@@ -20,20 +20,24 @@ module GroupByMatchType
         @union_find.find_or_create(keys + [index.to_s]) # Ensure uniqueness
       end
 
-      # Second pass: assign group_ids
-      group_id_map = {}
-      rows.each_with_index do |_, index|
-        root = @union_find.find(index.to_s)
-        group_id_map[root] ||= group_id_map.size + 1
-      end
-
-      # Determine output file path
       output_file ||= @input_file.sub(/\.csv$/, '_grouped.csv')
+
+      group_id_map = {}
+      next_group_id = 1
+
+      # write grouping column with row data to the output file
       CSV.open(output_file, 'w') do |csv|
         csv << ['group_id'] + rows.headers
+
         rows.each_with_index do |row, index|
           root = @union_find.find(index.to_s)
-          group_id = group_id_map[root]
+
+          group_id = group_id_map[root] ||= begin
+            id = next_group_id
+            next_group_id += 1
+            id
+          end
+
           csv << [group_id] + row.fields
         end
       end
